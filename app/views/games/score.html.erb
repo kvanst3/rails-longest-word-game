@@ -1,7 +1,13 @@
 <h1>Games#score</h1>
 <p>Find me in app/views/games/score.html.erb</p>
 
-<%= @score %>
+<% if @score == 1 %>
+  <%= "Sorry but" %> <strong> <%= @result %> </strong> <%= " does not seem to be a valid English word..." %>
+<% elsif @score == 2 %>
+  <%= "Sorry but" %> <strong> <%= @result %> </strong> <%= "has cheating letters" %>
+<% else %>
+  <%= "Congratulations!!! " %> <strong> <%= @result %> </strong> <%= "is a valid English word!" %>
+<% end %>
 </br></br>
 <%= @payload %>
 </br></br>

@@ -13,16 +13,18 @@ class GamesController < ApplicationController
     check = open(url).read
     result = JSON.parse(check)
 
-    return @score = "Sorry but #{@result} does not seem to be a valid English word..." if result['found'] == false
+    if result['found'] == false
+      return @score = 1
+    end
 
     @generate_letters = @payload.split("")
 
     @result.chars.each do |char|
       # raise
       if @generate_letters.include?(char) == false
-        return @score = "Sorry but #{@result} has letters not part of the grid"
+        return @score = 2
       end
-      return @score = "Congratulations! #{@result} is a valid English word!"
+      return @score = 3
 
     end
 
