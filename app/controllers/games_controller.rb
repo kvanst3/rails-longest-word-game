@@ -13,20 +13,14 @@ class GamesController < ApplicationController
     check = open(url).read
     result = JSON.parse(check)
 
-    if result['found'] == false
-      return @score = 1
-    end
-
-    @generate_letters = @payload.split("")
+    return @score = 1 if result['found'] == false
 
     @result.chars.each do |char|
-      # raise
-      if @generate_letters.include?(char) == false
-        return @score = 2
-      end
+      return @score = 2 if @result.chars.count(char) > @payload.chars.count(char)
       return @score = 3
-
     end
-
   end
 end
+
+# Use this to count if number of letters is matching or less
+# answer.chars.all? {|letter| answer.chars.count(letter) <= letters.char.count(letter)}
